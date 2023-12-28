@@ -1,0 +1,24 @@
+.square {
+    border: 1px solid black;
+    height: 4em;
+    width: 4em;
+    text-align: center;
+    vertical-align: center;
+    font-family: sans-serif;
+    margin: 0px;
+    pasdding: 0px;
+}
+
+.square td {
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    font-size: 50%;
+}
+
+.square p {
+    width: 100%;
+    font-size: 300%;
+    margin: 0;
+    padding: 0;
+}
