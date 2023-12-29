@@ -17,11 +17,11 @@ export const GridDisplay = () => {
     return <table className={"grid"}><tbody>
         {
             grid.array.map((row, x) => {
-                return <tr key={x + trigger}>
+                return <tr key={x}>
                     {
                         row.map((sq, y) => {
                             const position = `grid grid-pos-${x % 8 === 0 ? 'x' : x % 3}-${y % 8 === 0 ? 'y' : y % 3}`
-                            return <td className={position} key={`${x}-${y}-${trigger}`}><SquareDisplay val={sq.value()} allowed={sq.allowed} onClick={click(x, y)} /></td>;
+                            return <td className={position} key={`${x}-${y}`}><SquareDisplay val={sq.value()} allowed={sq.allowed} onClick={click(x, y)} /></td>;
                         })
                     }
                 </tr>;
