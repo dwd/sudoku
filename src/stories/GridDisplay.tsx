@@ -21,7 +21,7 @@ export const GridDisplay = () => {
         }
     }
     let tabIndex = 0;
-    return <table className={"grid"}><tbody>
+    return <div><table className={"grid"}><tbody>
         {
             grid.array.map((row, x) => {
                 return <tr key={x}>
@@ -37,5 +37,15 @@ export const GridDisplay = () => {
                 </tr>;
             })
         }
-    </tbody></table>;
+    </tbody></table>
+        <div className={'grid-solve'}>
+        <button onClick={() => {
+            console.log("Solving...");
+            grid.solve();
+            console.log("Solved.");
+            setGrid(grid);
+            setTrigger(trigger + 1);
+        }}>Solve!</button>
+        </div>
+    </div>;
 }

@@ -13,6 +13,16 @@ table.grid {
     border-collapse: collapse;
 }
 
+.grid-solve {
+    text-align: right;
+    margin: 1em;
+}
+
+.grid-solve button {
+    display: inline-block;
+    width: auto;
+}
+
 td.grid-pos-2-2 {
     border-bottom: 1px solid white;
     border-right: 1px solid white;
