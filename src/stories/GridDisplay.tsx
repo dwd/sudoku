@@ -3,16 +3,21 @@ import {SquareDisplay} from "./SquareDisplay.tsx";
 import "./grid.css";
 import {useState} from "react";
 
+interface GridState {
+    grid: Grid
+}
+
 export const GridDisplay = () => {
-    const [grid, setGrid] = useState<Grid>(new Grid());
-    const [trigger, setTrigger] = useState<number>(0);
+    const [gridstate, setGridState] = useState<GridState>({
+        grid: new Grid()
+    });
+    const grid = gridstate.grid;
     const [highlight, setHighlight] = useState<number|null>(null);
     const click = (x: number, y: number) => {
         return (num: number) => {
             grid.setUser(x, y, num as Number1to9);
             console.log(`Clicked on ${num} in square ${x},${y}`);
-            setGrid(grid);
-            setTrigger(trigger + 1);
+            setGridState({grid});
         };
     };
     const enter = (x: number, y: number) => {
@@ -43,8 +48,7 @@ export const GridDisplay = () => {
             console.log("Solving...");
             grid.solve();
             console.log("Solved.");
-            setGrid(grid);
-            setTrigger(trigger + 1);
+            setGridState({grid});
         }}>Solve!</button>
         </div>
     </div>;
