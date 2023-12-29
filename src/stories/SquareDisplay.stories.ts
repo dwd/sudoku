@@ -15,6 +15,7 @@ const meta = {
     // More on argTypes: https://storybook.js.org/docs/api/argtypes
     argTypes: {
         val: { control: 'number' },
+        highlight: { control: 'boolean' },
     },
 } satisfies Meta<typeof SquareDisplay>;
 
@@ -26,6 +27,7 @@ export const Valued: Story = {
     args: {
         val: 1,
         allowed: [1],
+        highlight: false,
     },
 };
 
@@ -33,6 +35,15 @@ export const TopRow: Story = {
     args: {
         val: null,
         allowed: [1,2,3],
+        highlight: false,
+    },
+};
+
+export const LeftRow: Story = {
+    args: {
+        val: null,
+        allowed: [1,4,7],
+        highlight: false,
     },
 };
 
@@ -40,5 +51,6 @@ export const Diagonal: Story = {
     args: {
         val: null,
         allowed: [1,5,9],
+        highlight: false,
     },
 };

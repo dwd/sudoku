@@ -28,5 +28,9 @@ div.square {
     align-items: center;
 }
 
+div.square.highlight {
+    color: #747bff;
+}
+
 .square span {
 }

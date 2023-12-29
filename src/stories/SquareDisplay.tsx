@@ -5,12 +5,18 @@ interface SquareProps {
     val: number | null;
     allowed: number[];
     onClick: (n: number) => void;
+    onEnter: () => void;
+    highlight: boolean;
+    tabIndex: number;
 }
 
 export const SquareDisplay = ({
         val,
         allowed,
         onClick,
+        onEnter,
+        highlight,
+        tabIndex,
 }: SquareProps) => {
     const tableRef = useRef<HTMLTableElement>(null);
     const clicker = (num: number) => {
@@ -32,8 +38,9 @@ export const SquareDisplay = ({
         if (tableRef.current === null) return;
         tableRef.current.focus();
     }, [tableRef]);
+    const className = highlight ? 'square highlight' : 'square'
     return val === null ?
-        <table className={'square'} tabIndex={-1} onKeyDown={pusher()} onMouseEnter={enter} ref={tableRef}>
+        <table className={'square'} tabIndex={tabIndex} onKeyDown={pusher()} onMouseEnter={enter} ref={tableRef}>
             <tbody>
             {
                 [0,3,6].map(r => {
@@ -42,7 +49,7 @@ export const SquareDisplay = ({
                             return <td key={r+c}>
                                 {
                                     allowed.find(v => v === r + c + 1) !== undefined ?
-                                        <button onClick={clicker(r + c + 1)}>
+                                        <button onClick={clicker(r + c + 1)} tabIndex={-1}>
                                             {r + c + 1}
                                         </button>
                                         :
@@ -57,5 +64,5 @@ export const SquareDisplay = ({
             </tbody>
         </table>
         :
-        <div className={'square'}><span>{ val }</span></div>;
+        <div className={className} onMouseEnter={onEnter}><span>{ val }</span></div>;
 };
