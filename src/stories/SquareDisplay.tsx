@@ -41,5 +41,5 @@ export const SquareDisplay = ({
             </tbody>
         </table>
         :
-        <div className={'square'}><p>{ val }</p></div>;
+        <div className={'square'}><span>{ val }</span></div>;
 };
