@@ -1,21 +1,7 @@
 terraform {
-  required_providers {
-    gandi = {
-      version = "~> 2.0.0"
-      source  = "go-gandi/gandi"
-    }
-    acme = {
-      version = "~> 2.0"
-      source  = "vancluever/acme"
-    }
-    aws = {
-      version = "~> 5.0"
-      source  = "hashicorp/aws"
-    }
+  backend "s3" {
+    bucket = "dwd-tfstate"
+    key = "sudoku/tfstate"
+    region = "eu-west-2"
   }
 }
-
-provider "aws" {
-  region = "eu-west-1"
-}
-
