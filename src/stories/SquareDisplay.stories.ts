@@ -28,6 +28,7 @@ export const Valued: Story = {
         val: 1,
         allowed: [1],
         highlight: false,
+        tabIndex: -1,
     },
 };
 
@@ -36,6 +37,7 @@ export const TopRow: Story = {
         val: null,
         allowed: [1,2,3],
         highlight: false,
+        tabIndex: -1,
     },
 };
 
@@ -44,6 +46,7 @@ export const LeftRow: Story = {
         val: null,
         allowed: [1,4,7],
         highlight: false,
+        tabIndex: -1,
     },
 };
 
@@ -52,5 +55,6 @@ export const Diagonal: Story = {
         val: null,
         allowed: [1,5,9],
         highlight: false,
+        tabIndex: -1,
     },
 };

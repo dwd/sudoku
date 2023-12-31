@@ -1,0 +1,51 @@
+name: Check Terraform
+
+on:
+  push:
+    branches: ['master']
+
+env:
+  TF_LOG: INFO
+  TF_INPUT: false
+
+jobs:
+  check-terraform:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    defaults:
+      run:
+        shell: bash
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      GANDI_KEY: ${{ secrets.GANDI_KEY }}
+      GANDIV5_API_KEY: ${{ secrets.GANDI_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+      - uses: hashicorp/setup-terraform@v2
+      - name: Terraform Init
+        run: terraform init
+        working-directory: ./terraform
+      - name: Terraform Format Check
+        run: terraform fmt -check
+        working-directory: ./terraform
+      - run: npm ci
+      - run: npm run build
+      - run: npm run build-storybook
+      - name: Gather deployment files
+        run: echo main_files = '[ '$(find . -type f -printf '"%p",')' ]' > ../terraform/vars.tfvars
+        working-directory: dist/
+      - name: Gather deployment files
+        run: echo sb_files = '[ '$(find . -type f -printf '"%p",')' ]' >> ../terraform/vars.tfvars
+        working-directory: storybook-static/
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: ./terraform
+      - name: Terraform Plan
+        run: terraform plan -no-color -var-file=vars.tfvars
+        working-directory: ./terraform
+      - name: Deploy it
+        run: terraform apply -var-file=vars.tfvars -auto-approve

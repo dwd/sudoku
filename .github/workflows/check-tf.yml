@@ -2,7 +2,7 @@ name: Check Terraform
 
 on:
   push:
-    branches: ['*', '!main']
+    branches: ['*', '!master']
 
 env:
   TF_LOG: INFO

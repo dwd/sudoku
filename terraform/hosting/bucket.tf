@@ -2,13 +2,8 @@ resource "aws_s3_bucket" "bucket" {
   bucket = "dwd-${var.name}"
 }
 
-resource "aws_s3_bucket_acl" "acl" {
-  bucket = aws_s3_bucket.bucket.id
-  acl    = "private"
-}
-
 resource "aws_cloudfront_origin_access_control" "default" {
-  name                              = "default"
+  name                              = "dwd-default-${var.name}"
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
@@ -38,5 +33,6 @@ resource "aws_cloudfront_distribution" "dist" {
   }
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate.cert.arn
+    ssl_support_method = "sni-only"
   }
 }
