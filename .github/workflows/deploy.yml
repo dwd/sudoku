@@ -22,6 +22,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       GANDI_KEY: ${{ secrets.GANDI_KEY }}
       GANDIV5_API_KEY: ${{ secrets.GANDI_KEY }}
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
