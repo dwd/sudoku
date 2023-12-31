@@ -4,27 +4,27 @@ resource "aws_s3_bucket" "bucket" {
 
 resource "aws_s3_bucket_acl" "acl" {
   bucket = aws_s3_bucket.bucket.id
-  acl = "private"
+  acl    = "private"
 }
 
 resource "aws_cloudfront_origin_access_control" "default" {
-  name = "default"
+  name                              = "default"
   origin_access_control_origin_type = "s3"
-  signing_behavior = "always"
-  signing_protocol = "sigv4"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 resource "aws_cloudfront_distribution" "dist" {
   origin {
-    domain_name = aws_s3_bucket.bucket.bucket_regional_domain_name
+    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.default.id
-    origin_id = "origin-${aws_s3_bucket.bucket.bucket}"
+    origin_id                = "origin-${aws_s3_bucket.bucket.bucket}"
   }
-  enabled = true
-  is_ipv6_enabled = true
-  http_version = "http2and3"
+  enabled             = true
+  is_ipv6_enabled     = true
+  http_version        = "http2and3"
   default_root_object = "index.html"
-  aliases = [ local.public_fqdn ]
+  aliases             = [local.public_fqdn]
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]

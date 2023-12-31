@@ -1,4 +1,4 @@
 variable "zone" {
-  type = string
+  type    = string
   default = "cridland.io"
 }
