@@ -20,4 +20,5 @@ resource "acme_certificate" "certificate" {
 resource "aws_acm_certificate" "cert" {
   private_key      = acme_certificate.certificate.private_key_pem
   certificate_body = acme_certificate.certificate.certificate_pem
+  provider         = aws.global
 }

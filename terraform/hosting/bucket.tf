@@ -1,5 +1,6 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "dwd-${var.name}"
+  bucket   = "dwd-${var.name}"
+  provider = aws.london
 }
 
 resource "aws_cloudfront_origin_access_control" "default" {
@@ -7,6 +8,7 @@ resource "aws_cloudfront_origin_access_control" "default" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
+  provider                          = aws.global
 }
 
 resource "aws_cloudfront_distribution" "dist" {
@@ -33,6 +35,7 @@ resource "aws_cloudfront_distribution" "dist" {
   }
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate.cert.arn
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
+  provider = aws.global
 }

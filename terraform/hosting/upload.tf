@@ -3,4 +3,5 @@ resource "aws_s3_object" "contents" {
   for_each = toset(var.contents)
   key      = each.key
   source   = "${var.source_dir}/${each.key}"
+  provider = aws.london
 }
