@@ -54,3 +54,4 @@ jobs:
         working-directory: ./terraform
       - name: Deploy it
         run: terraform apply -var-file=vars.tfvars -auto-approve
+        working-directory: ./terraform
