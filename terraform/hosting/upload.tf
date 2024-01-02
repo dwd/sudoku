@@ -7,7 +7,8 @@ resource "aws_s3_object" "contents" {
   bucket   = aws_s3_bucket.bucket.bucket
   for_each = toset(var.contents)
   key      = trimprefix(each.key, "./")
-  content  = data.local_file.contents[each.key]
+  content  = data.local_file.contents[each.key].content
+  etag  = data.local_file.contents[each.key].content_md5
   content_type = (
     endswith(each.key, ".html") ? "text/html" :
     endswith(each.key, ".css") ? "text/css" :
