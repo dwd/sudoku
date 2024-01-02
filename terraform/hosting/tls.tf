@@ -10,7 +10,7 @@ resource "acme_registration" "reg" {
 resource "acme_certificate" "certificate" {
   account_key_pem           = acme_registration.reg.account_key_pem
   common_name               = local.public_fqdn
-  subject_alternative_names = [ local.public_fqdn ]
+  subject_alternative_names = [local.public_fqdn]
 
   dns_challenge {
     provider = "gandiv5"
@@ -18,8 +18,8 @@ resource "acme_certificate" "certificate" {
 }
 
 resource "aws_acm_certificate" "cert" {
-  private_key      = acme_certificate.certificate.private_key_pem
-  certificate_body = acme_certificate.certificate.certificate_pem
+  private_key       = acme_certificate.certificate.private_key_pem
+  certificate_body  = acme_certificate.certificate.certificate_pem
   certificate_chain = acme_certificate.certificate.issuer_pem
-  provider         = aws.global
+  provider          = aws.global
 }
