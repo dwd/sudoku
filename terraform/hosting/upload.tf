@@ -1,8 +1,13 @@
+data "local_file" "contents" {
+  filename = "${var.source_dir}/${each.key}"
+  for_each = toset(var.contents)
+}
+
 resource "aws_s3_object" "contents" {
   bucket   = aws_s3_bucket.bucket.bucket
   for_each = toset(var.contents)
   key      = trimprefix(each.key, "./")
-  source   = "${var.source_dir}/${each.key}"
+  content  = data.local_file.contents[each.key]
   content_type = (
     endswith(each.key, ".html") ? "text/html" :
     endswith(each.key, ".css") ? "text/css" :
