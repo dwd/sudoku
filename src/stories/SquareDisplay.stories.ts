@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SquareDisplay } from './SquareDisplay.tsx';
+import { SquareDisplay } from '../components/SquareDisplay.tsx';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -54,6 +54,15 @@ export const Diagonal: Story = {
     args: {
         val: null,
         allowed: [1,5,9],
+        highlight: false,
+        tabIndex: -1,
+    },
+};
+
+export const Corners: Story = {
+    args: {
+        val: null,
+        allowed: [1,3,9],
         highlight: false,
         tabIndex: -1,
     },

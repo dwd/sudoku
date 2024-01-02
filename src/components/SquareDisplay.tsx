@@ -53,7 +53,7 @@ export const SquareDisplay = ({
                                             {r + c + 1}
                                         </button>
                                         :
-                                        ' '
+                                        <div className={'spacer'}> </div>
                                 }
                             </td>;
                         })

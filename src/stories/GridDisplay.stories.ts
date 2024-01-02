@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import {GridDisplay} from "./GridDisplay.tsx";
+import {GridDisplay} from "../components/GridDisplay.tsx";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {

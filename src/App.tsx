@@ -1,5 +1,5 @@
 import './App.css'
-import {GridDisplay} from "./stories/GridDisplay.tsx";
+import {GridDisplay} from "./components/GridDisplay.tsx";
 
 function App() {
   return (
