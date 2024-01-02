@@ -3,5 +3,5 @@ data "gandi_livedns_domain" "zone" {
 }
 
 locals {
-  public_fqdn = "${var.name}.${data.gandi_livedns_domain.zone.name}"
+  public_fqdn = "${var.name}.cridland.io"
 }

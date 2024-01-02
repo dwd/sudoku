@@ -3,18 +3,9 @@ resource "aws_s3_bucket" "bucket" {
   provider = aws.london
 }
 
-resource "aws_cloudfront_origin_access_control" "default" {
-  name                              = "dwd-default-${var.name}"
-  origin_access_control_origin_type = "s3"
-  signing_behavior                  = "always"
-  signing_protocol                  = "sigv4"
-  provider                          = aws.global
-}
-
 resource "aws_cloudfront_distribution" "dist" {
   origin {
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.default.id
     origin_id                = "origin-${aws_s3_bucket.bucket.bucket}"
   }
   enabled             = true
@@ -26,7 +17,7 @@ resource "aws_cloudfront_distribution" "dist" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     target_origin_id       = "origin-${aws_s3_bucket.bucket.bucket}"
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     forwarded_values {
       query_string = false
       cookies {
