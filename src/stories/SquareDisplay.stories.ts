@@ -14,8 +14,9 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/api/argtypes
     argTypes: {
-        val: { control: 'number' },
-        highlight: { control: 'boolean' },
+        userSet: { control: 'number' },
+        present: { control: 'number' },
+        highlight: { control: 'number' },
     },
 } satisfies Meta<typeof SquareDisplay>;
 
@@ -25,45 +26,50 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Valued: Story = {
     args: {
-        val: 1,
+        userSet: 1,
+        present: null,
         allowed: [1],
-        highlight: false,
+        highlight: null,
         tabIndex: -1,
     },
 };
 
 export const TopRow: Story = {
     args: {
-        val: null,
+        userSet: null,
+        present:  null,
         allowed: [1,2,3],
-        highlight: false,
+        highlight: null,
         tabIndex: -1,
     },
 };
 
 export const LeftRow: Story = {
     args: {
-        val: null,
+        userSet: null,
+        present:  null,
         allowed: [1,4,7],
-        highlight: false,
+        highlight: null,
         tabIndex: -1,
     },
 };
 
 export const Diagonal: Story = {
     args: {
-        val: null,
+        userSet: null,
+        present:  null,
         allowed: [1,5,9],
-        highlight: false,
+        highlight: null,
         tabIndex: -1,
     },
 };
 
 export const Corners: Story = {
     args: {
-        val: null,
+        userSet: null,
+        present:  null,
         allowed: [1,3,9],
-        highlight: false,
+        highlight: null,
         tabIndex: -1,
     },
 };

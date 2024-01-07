@@ -33,10 +33,10 @@ export const GridDisplay = () => {
                     {
                         row.map((sq, y) => {
                             const position = `grid grid-pos-${x % 8 === 0 ? 'x' : x % 3}-${y % 8 === 0 ? 'y' : y % 3}`
-                            const val = sq.value();
-                            const h = val !== null && val === highlight;
                             const ti = ++tabIndex;
-                            return <td className={position} key={`${x}-${y}`}><SquareDisplay tabIndex={ti} val={sq.value()} allowed={sq.allowed} onClick={click(x, y)} highlight={h} onEnter={enter(x, y)} /></td>;
+                            return <td className={position} key={`${x}-${y}`}>
+                                <SquareDisplay tabIndex={ti} userSet={sq.userSet} present={sq.present} allowed={sq.allowed} onClick={click(x, y)} highlight={highlight} onEnter={enter(x, y)} />
+                            </td>;
                         })
                     }
                 </tr>;

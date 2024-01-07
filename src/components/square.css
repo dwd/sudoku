@@ -35,6 +35,11 @@ div.square.highlight {
     color: #747bff;
 }
 
+div.square.calculated {
+    color: #747bff;
+    background-color: #213547;
+}
+
 .square .spacer {
     width: 100%;
     height: 100%;

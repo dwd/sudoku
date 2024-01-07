@@ -16,6 +16,7 @@ const meta = {
     argTypes: {
         val: { control: 'number' },
         highlight: { control: 'boolean' },
+        fromUser: { control: 'boolean' },
     },
 } satisfies Meta<typeof SquareSetDisplay>;
 
@@ -27,5 +28,33 @@ export const Valued: Story = {
     args: {
         val: 1,
         highlight: false,
+        fromUser: true,
     },
 };
+
+export const Highlight: Story = {
+    args: {
+        val: 2,
+        highlight: true,
+        fromUser: true,
+    },
+};
+
+export const Calculated: Story = {
+    args: {
+        val: 3,
+        highlight: false,
+        fromUser: false,
+    },
+};
+
+
+export const CalculatedHighlight: Story = {
+    args: {
+        val: 4,
+        highlight: true,
+        fromUser: false,
+    },
+};
+
+
