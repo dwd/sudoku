@@ -3,12 +3,14 @@ import {KeyboardEventHandler, useCallback, useRef} from "react";
 
 interface SquareChoiceProps {
     allowed: number[];
+    highlight?: number;
     onClick: (n: number) => void;
     tabIndex: number;
 }
 
 export const SquareChoice = ({
         allowed,
+        highlight,
         onClick,
         tabIndex,
 }: SquareChoiceProps) => {
@@ -41,7 +43,7 @@ export const SquareChoice = ({
                             return <td key={r+c}>
                                 {
                                     allowed.find(v => v === r + c + 1) !== undefined ?
-                                        <button onClick={clicker(r + c + 1)} tabIndex={-1}>
+                                        <button className={highlight === (r + c + 1) ? 'square-choice highlight' : 'square-choice'} onClick={clicker(r + c + 1)} tabIndex={-1}>
                                             {r + c + 1}
                                         </button>
                                         :

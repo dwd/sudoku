@@ -24,6 +24,10 @@
     color: white;
 }
 
+.square button.highlight {
+    color: #747bff;
+}
+
 div.square {
     font-size: 300%;
     display: flex;
@@ -36,7 +40,6 @@ div.square.highlight {
 }
 
 div.square.calculated {
-    color: #747bff;
     background-color: #213547;
 }
 

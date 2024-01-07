@@ -14,6 +14,7 @@ const meta = {
     tags: ['autodocs'],
     // More on argTypes: https://storybook.js.org/docs/api/argtypes
     argTypes: {
+        highlight: { control: 'number'}
     },
 } satisfies Meta<typeof SquareChoice>;
 
