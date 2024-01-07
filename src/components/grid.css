@@ -21,6 +21,7 @@ table.grid {
 .grid-solve button {
     display: inline-block;
     width: auto;
+    margin-right: 2em;
 }
 
 td.grid-pos-2-2 {

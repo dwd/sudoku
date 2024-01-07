@@ -45,6 +45,10 @@ export const GridDisplay = () => {
     </tbody></table>
         <div className={'grid-solve'}>
         <button onClick={() => {
+            grid.popArray();
+            setGridState({grid});
+        }}>Undo</button>
+        <button onClick={() => {
             console.log("Solving...");
             grid.solve();
             console.log("Solved.");
