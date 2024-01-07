@@ -7,7 +7,7 @@ interface SquareProps {
     present: number | null;
     allowed: number[];
     onClick: (n: number) => void;
-    onEnter: () => void;
+    onEnter: (n: number) => void;
     highlight: number | null;
     tabIndex: number;
 }
@@ -25,7 +25,7 @@ export const SquareDisplay = ({
     const highlightSet = highlight === val;
     const highlightNum = allowed.find((v) => v === highlight) !== undefined ? highlight || undefined : undefined;
     return val === null ?
-        <SquareChoice allowed={allowed} onClick={onClick} tabIndex={tabIndex} highlight={highlightNum}/>
+        <SquareChoice allowed={allowed} onClick={onClick} onEnter={onEnter} tabIndex={tabIndex} highlight={highlightNum}/>
         :
-        <SquareSetDisplay val={val} onEnter={onEnter} highlight={highlightSet} fromUser={userSet !== null}/>;
+        <SquareSetDisplay val={val} onEnter={() => onEnter(val)} highlight={highlightSet} fromUser={userSet !== null}/>;
 };

@@ -20,10 +20,8 @@ export const GridDisplay = () => {
             setGridState({grid});
         };
     };
-    const enter = (x: number, y: number) => {
-        return () => {
-            setHighlight(grid.array[x][y].value());
-        }
+    const enter = (val: number) => {
+        setHighlight(val);
     }
     let tabIndex = 0;
     return <div><table className={"grid"}><tbody>
@@ -35,7 +33,7 @@ export const GridDisplay = () => {
                             const position = `grid grid-pos-${x % 8 === 0 ? 'x' : x % 3}-${y % 8 === 0 ? 'y' : y % 3}`
                             const ti = ++tabIndex;
                             return <td className={position} key={`${x}-${y}`}>
-                                <SquareDisplay tabIndex={ti} userSet={sq.userSet} present={sq.present} allowed={sq.allowed} onClick={click(x, y)} highlight={highlight} onEnter={enter(x, y)} />
+                                <SquareDisplay tabIndex={ti} userSet={sq.userSet} present={sq.present} allowed={sq.allowed} onClick={click(x, y)} highlight={highlight} onEnter={enter} />
                             </td>;
                         })
                     }
