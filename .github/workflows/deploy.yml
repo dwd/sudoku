@@ -30,6 +30,7 @@ jobs:
       - uses: dwd/secrets-vault@master
         with:
           VAULT_KEY: ${{ secrets.VAULT_KEY }}
+          environment: deploy
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
