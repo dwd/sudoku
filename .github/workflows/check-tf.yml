@@ -14,7 +14,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v2
@@ -24,9 +23,13 @@ jobs:
           environment: ci
       - name: Terraform Init
         run: terraform init
+        working-directory: ./terraform
       - name: Terraform Format Check
         run: terraform fmt -check
+        working-directory: ./terraform
       - name: Terraform Validate
         run: terraform validate
+        working-directory: ./terraform
       - name: Terraform Plan
         run: terraform plan -no-color -var sb_files='[]' -var main_files='[]'
+        working-directory: ./terraform
