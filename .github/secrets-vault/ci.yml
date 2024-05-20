@@ -1,0 +1,8 @@
+parent: main
+secrets:
+  AWS_ACCESS_KEY_ID:
+    description: AWS key ID, used for CI checks (not deploy)
+    env: true
+  AWS_SECRET_ACCESS_KEY:
+    description: AWS secret access key for above
+    env: true

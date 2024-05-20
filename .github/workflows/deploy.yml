@@ -17,12 +17,6 @@ jobs:
     defaults:
       run:
         shell: bash
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
-      GANDI_KEY: ${{ secrets.GANDI_KEY }}
-      GANDIV5_API_KEY: ${{ secrets.GANDI_KEY }}
-      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -37,6 +31,9 @@ jobs:
       - name: Terraform Format Check
         run: terraform fmt -check
         working-directory: ./terraform
+      - uses: dwd/secrets-vault@master
+        with:
+          VAULT_KEY: ${{ secrets.VAULT_KEY }}
       - run: npm ci
       - run: npm run build
       - run: npm run build-storybook

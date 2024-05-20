@@ -1,0 +1,4 @@
+secrets:
+  GANDI_KEY:
+    description: API key for Gandi for DNS provision (also used for ACME proof)
+    env: true
