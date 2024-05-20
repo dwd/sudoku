@@ -9,7 +9,7 @@ env:
   TF_INPUT: false
 
 jobs:
-  check-terraform:
+  deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: read
