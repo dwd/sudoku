@@ -18,10 +18,6 @@ jobs:
       run:
         shell: bash
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.DEPLOY_AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.DEPLOY_AWS_SECRET_ACCESS_KEY }}
-      GANDI_KEY: ${{ secrets.GANDI_KEY }}
-      GANDIV5_API_KEY: ${{ secrets.GANDI_KEY }}
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +27,9 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
           scope: "@dwd"
       - uses: hashicorp/setup-terraform@v2
+      - uses: dwd/secrets-vault@master
+        with:
+          VAULT_KEY: ${{ secrets.VAULT_KEY }}
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform
@@ -55,3 +54,6 @@ jobs:
       - name: Deploy it
         run: terraform apply -var-file=vars.tfvars -auto-approve
         working-directory: ./terraform
+        env:
+          GANDIV5_API_KEY: ${{ env.GANDI_API_KEY }}
+
