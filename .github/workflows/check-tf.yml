@@ -18,15 +18,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v2
+      - uses: dwd/secrets-vault@master
+        with:
+          vault_key: ${{ secrets.VAULT_KEY }}
+          environment: ci
       - name: Terraform Init
         run: terraform init
       - name: Terraform Format Check
         run: terraform fmt -check
       - name: Terraform Validate
         run: terraform validate
-      - uses: dwd/secrets-vault@master
-        with:
-          vault_key: ${{ secrets.VAULT_KEY }}
-          environment: ci
       - name: Terraform Plan
         run: terraform plan -no-color
