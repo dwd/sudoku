@@ -56,5 +56,5 @@ jobs:
         run: terraform apply -var-file=vars.tfvars -auto-approve
         working-directory: ./terraform
         env:
-          GANDIV5_API_KEY: ${{ env.GANDI_API_KEY }}
+          GANDIV5_API_KEY: ${{ env.GANDI_KEY }}
 
