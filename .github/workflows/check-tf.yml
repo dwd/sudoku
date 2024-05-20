@@ -26,6 +26,12 @@ jobs:
         run: terraform init
       - name: Terraform Format Check
         run: terraform fmt -check
+      - name: Gather deployment files
+        run: echo main_files = '[]' > ../terraform/vars.tfvars
+        working-directory: dist/
+      - name: Gather deployment files
+        run: echo sb_files = '[]' >> ../terraform/vars.tfvars
+        working-directory: storybook-static/
       - name: Terraform Validate
         run: terraform validate
       - name: Terraform Plan
