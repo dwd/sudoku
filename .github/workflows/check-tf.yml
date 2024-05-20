@@ -26,11 +26,7 @@ jobs:
         run: terraform init
       - name: Terraform Format Check
         run: terraform fmt -check
-      - name: Fake deployment files
-        run: echo main_files = '[]' > ../terraform/vars.tfvars
-      - name: Fake deployment files
-        run: echo sb_files = '[]' >> ../terraform/vars.tfvars
       - name: Terraform Validate
         run: terraform validate
       - name: Terraform Plan
-        run: terraform plan -no-color
+        run: terraform plan -no-color -var sb_files='[]' -var main_files='[]'
